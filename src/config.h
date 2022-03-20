@@ -14,6 +14,12 @@ static constexpr int d2 = 11;
 static constexpr int d1 = 12;
 
 static constexpr int btn = A7;
-static constexpr int input = A5;
+
+static constexpr int inputpwr = A4;
+static constexpr int inputgnd = A5;
+static constexpr int input = A6;
 
 static constexpr float maxDist = 100; // mm
+
+static constexpr int numSamples = 100;
+static constexpr int numCals = 6;

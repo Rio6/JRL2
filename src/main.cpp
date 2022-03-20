@@ -6,9 +6,6 @@
 
 using namespace BLA;
 
-static constexpr int numSamples = 20;
-static constexpr int numCals = 6;
-
 template <int N>
 struct Sampler {
    int samples[N];
@@ -67,8 +64,16 @@ struct Calibrator {
 };
 
 void setup() {
+   analogReference(EXTERNAL);
    pinMode(btn, INPUT);
+
    pinMode(input, INPUT);
+   pinMode(inputpwr, OUTPUT);
+   pinMode(inputgnd, OUTPUT);
+
+   digitalWrite(inputpwr, HIGH);
+   digitalWrite(inputgnd, LOW);
+
    disp_init();
 }
 
