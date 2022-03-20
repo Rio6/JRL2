@@ -1,19 +1,9 @@
 #pragma once
 
-static constexpr int a = 10;
-static constexpr int b = 13;
-static constexpr int c = 5;
-static constexpr int d = 7;
-static constexpr int e = 8;
-static constexpr int f = 9;
-static constexpr int g = 4;
-static constexpr int p = 6;
-static constexpr int d4 = A1;
-static constexpr int d3 = A0;
-static constexpr int d2 = 11;
-static constexpr int d1 = 12;
+// lcd
+static constexpr int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
 
-static constexpr int btn = A7;
+static constexpr int btn = 10;
 
 static constexpr int inputpwr = A4;
 static constexpr int inputgnd = A5;
@@ -21,5 +11,10 @@ static constexpr int input = A6;
 
 static constexpr float maxDist = 100; // mm
 
-static constexpr int numSamples = 100;
-static constexpr int numCals = 6;
+static constexpr int numSamples = 200;
+
+static constexpr int refreshInterval = 500; // ms
+static constexpr int sampleFreq = 500;
+
+static const float calPoints[] = { 15, 20, 25, 30, 40, 60, 80, 100 };
+static constexpr int numCals = sizeof(calPoints) / sizeof(calPoints[0]);
