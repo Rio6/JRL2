@@ -50,7 +50,7 @@ void loop() {
    } else {
       disp_message("Measuring");
       disp_num(cal.calibrate(value));
-      Serial.println(value.value());
+      //Serial.println(value.value());
    }
 
    disp_update();
