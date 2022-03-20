@@ -1,0 +1,121 @@
+\documentclass[12pt]{extarticle}
+\usepackage[letterpaper, margin=2cm]{geometry}
+\usepackage{amsmath, amssymb, commath, mathtools, graphicx, empheq, polynom, steinmetz}
+\usepackage{enumerate}
+\usepackage{wasysym, gensymb, siunitx}
+\usepackage{soul, color, tikz, pgfplots}
+\usepgfplotslibrary{statistics}
+
+% {{{ preamble
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
+\makeatother
+
+\newcommand {\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand {\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand {\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand {\Bmat}[1]{\begin{Bmatrix}#1\end{Bmatrix}}
+\newcommand {\vmat}[1]{\begin{vmatrix}#1\end{vmatrix}}
+\newcommand {\Vmat}[1]{\begin{Vmatrix}#1\end{Vmatrix}}
+\newcommand {\smallmat}[1]{\begin{smallmatrix}#1\end{smallmatrix}}
+
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"01} % makes * looks like \cdot
+\newcommand {\x}{\times}
+
+\newcommand {\conj}[1] {\overline{#1}}
+\newcommand {\conjt}[1] {#1^\text{*}}
+\newcommand {\real}{\mathbb{R}}
+\renewcommand {\natural}{\mathbb{N}}
+\newcommand {\complex}{\mathbb{C}}
+\newcommand {\ihat}{\hat{\imath}}
+\newcommand {\jhat}{\hat{\jmath}}
+
+\newcommand {\dsp}{\displaystyle}
+\newcommand {\hsp}{\hspace{1em}}
+\newcommand {\vsp}{\vspace{1em}}
+\newcommand {\orr}{\overrightarrow}
+\newcommand {\lrr}{\longrightarrow}
+\newcommand {\mar}{\multicolumn{1}{c}{\longrightarrow}}
+\newcommand {\swap}{\leftrightarrow}
+\newcommand {\xrr}{\xrightarrow}
+\newcommand {\qe}{\stackrel{?}{=}}
+\newcommand {\qed}{\intertext{\hfill$\blacksquare$}}
+\newcommand {\Epsilon}{\mathcal{E}}
+
+\newenvironment {system}
+{\left\{\begin{aligned}}
+{\end{aligned}\right.}
+
+\newcommand {\tri}[4][]{
+    \begin{center}
+        \begin{tikzpicture}
+            \draw
+                (0, 3) -- node[anchor=east]{$#2$}
+                (0, 0) -- node[anchor=north]{$#3$}
+                (4, 0) -- node[anchor=south, rotate=-36.9]{$#4$} cycle;
+            \draw
+                (4, 0) ++(143.1:1)
+                arc (143.1:180:1) node at (2.7, 0.4) {$#1$};
+        \end{tikzpicture}
+    \end{center}
+}
+
+\def\<{\langle}
+\def\>{\rangle}
+\def\({\left(}
+\def\){\right)}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+\setlength{\jot}{10pt}
+%\allowdisplaybreaks
+
+% }}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{align*}
+    \mathrm{num samples} &= 6 \\
+    ax^3 + bx^2 + cx + d &= y \\
+    \pmat {
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1
+    }
+    \pmat {
+        a \\ b \\ c \\ d
+    }
+    =
+    \pmat {
+        y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6
+    } \\
+    A &=
+    \pmat {
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1 \\
+        x^3 & x^2 & x & 1
+    } \\
+    (A^TA)^{-1}A^T 
+    \pmat {
+        y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6
+    }
+    &=
+    \pmat {
+        a \\ b \\ c \\ d
+    }
+\end{align*}
+
+\end{document}
+
+% vim: set foldmethod=marker:
