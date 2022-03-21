@@ -79,16 +79,15 @@
 \begin{document}
 \pagenumbering{gobble}
 
-\begin{align*}
-    \mathrm{num samples} &= 6 \\
-    ax^3 + bx^2 + cx + d &= y \\
+\begin{gather*}
+    ax^3 + bx^2 + cx + d = y \\
     \pmat {
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1
+        x_1^3 & x_1^2 & x_1 & 1 \\
+        x_2^3 & x_2^2 & x_2 & 1 \\
+        x_3^3 & x_3^2 & x_3 & 1 \\
+        x_4^3 & x_4^2 & x_4 & 1 \\
+        x_5^3 & x_5^2 & x_5 & 1 \\
+        x_6^3 & x_6^2 & x_6 & 1
     }
     \pmat {
         a \\ b \\ c \\ d
@@ -97,24 +96,24 @@
     \pmat {
         y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6
     } \\
-    A &=
+    A =
     \pmat {
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1 \\
-        x^3 & x^2 & x & 1
+        x_1^3 & x_1^2 & x_1 & 1 \\
+        x_2^3 & x_2^2 & x_2 & 1 \\
+        x_3^3 & x_3^2 & x_3 & 1 \\
+        x_4^3 & x_4^2 & x_4 & 1 \\
+        x_5^3 & x_5^2 & x_5 & 1 \\
+        x_6^3 & x_6^2 & x_6 & 1
     } \\
     (A^TA)^{-1}A^T 
     \pmat {
         y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6
     }
-    &=
+    =
     \pmat {
         a \\ b \\ c \\ d
     }
-\end{align*}
+\end{gather*}
 
 \end{document}
 
