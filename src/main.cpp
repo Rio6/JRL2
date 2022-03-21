@@ -22,6 +22,9 @@ void setup() {
    // button
    pinMode(btn, INPUT_PULLUP);
 
+   // led
+   pinMode(led, OUTPUT);
+
    // sensor
    pinMode(input, INPUT);
    pinMode(inputpwr, OUTPUT);
@@ -54,6 +57,9 @@ void loop() {
    }
 
    disp_update();
+
+   // led
+   digitalWrite(led, value > 10 ? HIGH : LOW);
 
    // button
    static long btnon = 0;

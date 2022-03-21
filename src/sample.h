@@ -5,20 +5,40 @@
 
 using namespace BLA;
 
-static void printEquation(const Matrix<4, 1> &cal) {
+static void printEquation(const Matrix<6, 1> &cal) {
    char buff[16];
 
-   dtostrf(cal(0), 10, 10, buff);
+   dtostrf(cal(0), 1, 10, buff);
    Serial.print(buff);
+
    Serial.print("x^3 + ");
-   dtostrf(cal(1), 10, 10, buff);
+   dtostrf(cal(1), 1, 10, buff);
    Serial.print(buff);
+
    Serial.print("x^2 + ");
-   dtostrf(cal(2), 10, 10, buff);
+   dtostrf(cal(2), 1, 10, buff);
    Serial.print(buff);
+
    Serial.print("x + ");
-   dtostrf(cal(3), 10, 10, buff);
-   Serial.println(buff);
+   dtostrf(cal(3), 1, 10, buff);
+   Serial.print(buff);
+
+   Serial.print(" + ");
+   dtostrf(cal(4), 1, 10, buff);
+   Serial.print(buff);
+
+   Serial.print("cos(");
+   dtostrf(omega, 1, 10, buff);
+   Serial.print(buff);
+
+   Serial.print("x) + ");
+   dtostrf(cal(5), 1, 10, buff);
+   Serial.print(buff);
+
+   Serial.print("sin(");
+   dtostrf(omega, 1, 10, buff);
+   Serial.print(buff);
+   Serial.println("x)");
 }
 
 template <int N>
@@ -47,12 +67,12 @@ struct Sampler {
 template <int N>
 struct Calibrator {
    int n = 0;
-   Matrix<N, 4> xs;
+   Matrix<N, 6> xs;
    Matrix<N, 1> ys;
-   Matrix<4, 1> cal;
+   Matrix<6, 1> cal;
 
    void loadFromEEPROM() {
-      for(int i = 0; i < 4; i++) {
+      for(int i = 0; i < 6; i++) {
          EEPROM.get(i * sizeof(float), cal(i));
       }
       n = N;
@@ -63,7 +83,7 @@ struct Calibrator {
    void saveToEEPROM() {
       Serial.println("saving");
       printEquation(cal);
-      for(int i = 0; i < 4; i++) {
+      for(int i = 0; i < 6; i++) {
          EEPROM.put(i * sizeof(float), cal(i));
       }
    }
@@ -85,6 +105,8 @@ struct Calibrator {
       xs(n, 1) = x*x;
       xs(n, 2) = x;
       xs(n, 3) = 1;
+      xs(n, 4) = cos(x * omega);
+      xs(n, 5) = sin(x * omega);
       ys(n) = y;
       n++;
 
@@ -101,7 +123,7 @@ struct Calibrator {
    }
 
    float calibrate(float v) {
-      Matrix<1, 4> row = { v*v*v, v*v, v, 1 };
+      Matrix<1, 6> row = { v*v*v, v*v, v, 1, cos(v * omega), sin(v * omega) };
       return (row * cal)(0);
    }
 
